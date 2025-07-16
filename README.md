@@ -108,3 +108,5 @@ The files are saved at /data/vst-volume/video.
 https://docs.nvidia.com/moj/setup/ai-nvr.html
 
 https://docs.nvidia.com/moj/setup/quick-start.html
+
+Looking for tech support or have a business inquiry? Let’s talk: [Contact Form](https://www.advantech.com/en/form/2bcb7004-44e9-4e70-9ef0-520f326e6141?callback=f51f1493-33ae-43e5-8172-cb8055499ec1)
