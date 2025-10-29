@@ -1,93 +1,112 @@
-# ainvr-github
+# AI-NVR
+Advantech AI-NVR
 
+# Introduction
 
+Network Video Recorder (AI-NVR) as a application built using the Metropolis Microservices for Jetson stack. The application is downloaded as a docker compose package (within compressed tar file) and can be installed based on instructions in the setup section.
 
-## Getting started
+MIC-717OX is designed to facilitate the deployment and operation of Nvidia Jetson AI-NVR system.
+![image](https://github.com/user-attachments/assets/af53b491-392e-465a-be48-59edf8ad2319)
+![image](https://github.com/user-attachments/assets/307b5ffd-734a-4e5f-b008-4d5d5e146936)
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+# System Setup
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+This chapter describe hardware and software requirement.
 
-## Add your files
+## Hardware Preparation
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+| Name | Description |
+| --- | --- |
+| Product | MIC-711-OX4A1 (16GB) |
+| JetPack | V6.0 (MIC717OX_Jetpack6.0.0_V1.0.0.tbz2) |
+| Storage (NVMe) | 128GB |
+| POE Camera | Support up to 8 POE Cameras |
 
-```
-cd existing_repo
-git remote add origin https://172.17.4.45/isystem-ai-solution-engineering/ainvr-github.git
-git branch -M main
-git push -uf origin main
-```
+## BSP
 
-## Integrate with your tools
+Please confirm your MIC-717 device has flashed **MIC717OX\_Jetpack6.0.0\_V1.0.0.tbz2.**
 
-- [ ] [Set up project integrations](https://172.17.4.45/isystem-ai-solution-engineering/ainvr-github/-/settings/integrations)
+## POE Camera
 
-## Collaborate with your team
+MIC-717 supports up to eight POE cameras which supports RTSP stream output. Please adjust IP address of POE camera to 192.168.1.X.
+![image](https://github.com/user-attachments/assets/36a6d379-89c4-4e82-ae19-04ab0db9f416)
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+The list of POE cameras is supported by default. Other cameras can be used but need to manually add to sensor list.
+![image](https://github.com/user-attachments/assets/8b15a726-db96-4715-a74f-dd949e8f883f)
 
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+# AINVR Service
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+After BSP flashing successfully, please download AINVR package from URL.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Filename: mic717\_ainvr\_v01.tbz2 ([Download](https://advantecho365-my.sharepoint.com/:u:/g/personal/sean23_chang_advantech_com/ES5RdqVBaLhInU2BkSMfcloBc6Z0vnd5DsNQkM1nZzGjsg?e=RQs50v))
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+MD5: ea8d8d1a6ec92a0ca4efb8b36ba75141
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Filesize: 7.0 GB
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+![image](https://github.com/user-attachments/assets/5354eb6a-b330-49b1-8032-cd9d36a32571)
+![image](https://github.com/user-attachments/assets/0f61ad07-f88f-47e8-b3b5-dd817538a7f2)
+ ![image](https://github.com/user-attachments/assets/cd7fa356-0a48-40f5-9d4f-cd4fbbb8c0f5)
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+![image](https://github.com/user-attachments/assets/edb548c7-7058-408e-9648-9d67a697b9c2)
+![image](https://github.com/user-attachments/assets/35d8a95e-e23b-43aa-8246-543d3a24d7c6)
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+After finish installation process, AINVR service will start running when MIC-717 boot up. It will takes times to launch all process in background. Before running NVR application, please idle MIC around 10 minutes in Ubuntu desktop.
 
-## License
-For open source projects, say how it is licensed.
+## NVStreamer
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+To have better user experience, please install chromium browser before running AINVR.
+
+![image](https://github.com/user-attachments/assets/9ce83561-5a4f-40b3-80f1-46befac58009)
+
+NVStreamer is an NVIDIA software that enables storing and serving of video files that can then be streamed using RTSP protocol
+Launch Chromium Browser 
+In the address bar enter http://127.0.0.1:31000
+
+(Please connect MIC-717 eth1 with internet, it is required for NVStreamer service)
+
+![image](https://github.com/user-attachments/assets/b6ef85a9-df9f-4b95-ad35-fa913c952d4c)
+
+File Upload: 
+Select “File Upload” and select a video from file (Supported codec: h264/h265, file: mp4/mkv), drag-and-drop it on UI area.
+![image](https://github.com/user-attachments/assets/4ee24c62-1efd-4daa-b50e-270c06d5559b)
+
+## VIT
+
+**Video Storage Toolkit (VST)** is developed by Nvidia. It is particularly suitable for AI based video analytics systems by providing hardware accelerated video decoding, streaming and storage from multiple video sources. VST auto-discovers ONVIF-S compliant IP cameras, and allows use of custom IP stream as video source. It also allows for video to be stored, played back at various speeds, or paused at any frame.
+
+Launch Chromium Browser In the address bar enter http://127.0.0.1:30080/vst
+
+(Please connect MIC-717 eth1 with internet, it is required for VST service)
+
+![image](https://github.com/user-attachments/assets/7e2cd7c4-4e24-4af0-bdba-82352fabd49c)
+
+To setup IP camera manually in Sensor management, input the IP address of RTSP and click submit.
+![image](https://github.com/user-attachments/assets/40ba09f4-6fa0-44d1-9d8d-ebf166f669dc)
+
+## ROI
+
+MIC-717 supports up to eight POE cameras and H.265 streams based on using PeopleNet 2.6 model using DLA based inference and NVDCF tracker.
+
+Click ROI and set up region and then select ROI and show, you can check the people counting in video.
+![image](https://github.com/user-attachments/assets/f902d616-9825-4494-8dc9-f0ba390c6a5f)
+
+## Video Wall
+
+Based on scenario, user can select multiple stream in video wall.
+![image](https://github.com/user-attachments/assets/627888b2-9f89-4baa-9ebe-4b2604357a03)
+
+## Video Record
+
+The files are saved at /data/vst-volume/video.
+![image](https://github.com/user-attachments/assets/a1cbbf52-5150-4417-94cc-58b71e4260d5)
+
+**REFERENCE**
+
+https://docs.nvidia.com/moj/setup/ai-nvr.html
+
+https://docs.nvidia.com/moj/setup/quick-start.html
+
+Looking for tech support or have a business inquiry? Let’s talk: [Contact Form](https://www.advantech.com/en/form/2bcb7004-44e9-4e70-9ef0-520f326e6141?callback=f51f1493-33ae-43e5-8172-cb8055499ec1)
